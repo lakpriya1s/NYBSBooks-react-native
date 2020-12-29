@@ -1,0 +1,12 @@
+{
+  "name": "NYBSBooks-react-native",
+  "displayName": "NYBSBooks-react-native",
+  "expo": {
+    "name": "NYBSBooks-react-native",
+    "slug": "NYBSBooks-react-native",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
