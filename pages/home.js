@@ -1,4 +1,4 @@
-import { View, StyleSheet, Text} from "react-native";
+import { View, StyleSheet,TouchableOpacity, Text} from "react-native";
 import React, { Component } from 'react';
 
 class Home extends Component {
@@ -8,8 +8,9 @@ class Home extends Component {
     }
     render() { 
         return ( 
-            <View style={styles.background}>
-                <Text>Hello</Text>
+            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
+                <Text>{this.props.route.params.titleid}</Text>
+                <TouchableOpacity onPress={() => this.props.navigation.navigate('BookList') }><Text>Go to Details</Text></TouchableOpacity>
             </View>
          );
     }

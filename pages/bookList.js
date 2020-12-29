@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { ActivityIndicator, StyleSheet, FlatList, Text, View, SafeAreaView, } from "react-native";
+import { ActivityIndicator, StyleSheet, FlatList, Text, View, SafeAreaView, TouchableOpacity } from "react-native";
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import Home from './home';
 
 class BookList extends Component {
     constructor(props){
@@ -35,7 +38,7 @@ class BookList extends Component {
           </View>
         }else{
             const renderItem = ({ item }) => (
-                <Item title={item.display_name} />
+                <Item nav={this.props.navigation} title={item.display_name} titleid={item.list_name_encoded} />
             );
           
             return (
@@ -51,10 +54,16 @@ class BookList extends Component {
     }
 }
 
-const Item = ({ title }) => (
+const Item = ({ title, nav, titleid }) => (
+  <TouchableOpacity
+    onPress={() => {
+      console.log(title, 'was pressed'),
+      nav.navigate("Home", {titleid: titleid})
+    }}>
     <View style={styles.item}>
       <Text style={styles.title}>{title}</Text>
     </View>
+  </TouchableOpacity>
 );
   
 const styles = StyleSheet.create({
@@ -68,13 +77,13 @@ const styles = StyleSheet.create({
       padding: 10
     },
       item: {
-        backgroundColor: '#f9c2ff',
+        backgroundColor: '#63ccff',
         padding: 20,
         marginVertical: 8,
         marginHorizontal: 16,
       },
       title: {
-        fontSize: 32,
+        fontSize: 20,
       },
 });
  
