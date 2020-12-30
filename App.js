@@ -6,6 +6,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Book from './pages/book';
+import TopBooks from './pages/top5';
 
 const Stack = createStackNavigator();
 const StackTop = createStackNavigator();
@@ -64,7 +65,7 @@ function StackScreen() {
 function TopStackScreen() {
   return (
     <StackTop.Navigator>
-        <StackTop.Screen name="BookList" component={BookList} />
+        <StackTop.Screen name="Top5" component={TopBooks} />
         <StackTop.Screen name="Category" component={Category} options={({ route }) => ({ title: route.params.name })}/>
         <StackTop.Screen name="Book" component={Book} options={({ route }) => ({ title: route.params.name })}/>
     </StackTop.Navigator>
