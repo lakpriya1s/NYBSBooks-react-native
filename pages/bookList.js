@@ -3,7 +3,7 @@ import axios from 'axios';
 import { ActivityIndicator, StyleSheet, FlatList, Text, View, SafeAreaView, TouchableOpacity } from "react-native";
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import Home from './home';
+import Category from './category';
 
 class BookList extends Component {
     constructor(props){
@@ -38,7 +38,14 @@ class BookList extends Component {
           </View>
         }else{
             const renderItem = ({ item }) => (
-                <Item nav={this.props.navigation} title={item.display_name} titleid={item.list_name_encoded} />
+                <TouchableOpacity
+                onPress={() => {
+                  this.props.navigation.navigate("Category", {titleid: item.list_name_encoded, name: item.display_name})
+                }}>
+                <View style={styles.item}>
+                  <Text style={styles.title}>{item.display_name}</Text>
+                </View>
+              </TouchableOpacity>
             );
           
             return (
@@ -53,18 +60,6 @@ class BookList extends Component {
         }
     }
 }
-
-const Item = ({ title, nav, titleid }) => (
-  <TouchableOpacity
-    onPress={() => {
-      console.log(title, 'was pressed'),
-      nav.navigate("Home", {titleid: titleid})
-    }}>
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  </TouchableOpacity>
-);
   
 const styles = StyleSheet.create({
     container: {
@@ -83,7 +78,7 @@ const styles = StyleSheet.create({
         marginHorizontal: 16,
       },
       title: {
-        fontSize: 20,
+        fontSize: 20
       },
 });
  
