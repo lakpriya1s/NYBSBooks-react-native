@@ -40,10 +40,10 @@ class TopBooks extends Component {
                     <TouchableOpacity onPress={() => {
                         this.props.navigation.navigate("Category", {titleid: item.list_name_encoded, name: item.display_name})
                     }}>
-                    <Card>
-                        <Card.Title>{item.display_name}</Card.Title>
-                    </Card>
-                  </TouchableOpacity>
+                    <View style={styles.item}>
+                        <Text style={[styles.title,styles.titleColor]}>{item.display_name}</Text>
+                    </View>
+                    </TouchableOpacity>
                     
                     <FiveList books={item} nav={this.props.navigation}/>
                 </View>
@@ -82,14 +82,18 @@ const styles = StyleSheet.create({
         padding: 10
     },
     item: {
-        backgroundColor: '#63ccff',
+        backgroundColor: '#534bae',
         padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16,
+        marginTop: 20,
+        marginLeft: 8,
+        marginRight: 8
     },
     title: {
         fontSize: 20
     },
+    titleColor:{
+        color: '#fff'
+      }
 })
 
 export default TopBooks;

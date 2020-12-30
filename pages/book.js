@@ -52,19 +52,13 @@ const styles = StyleSheet.create({
       justifyContent: "space-around",
       padding: 10
     },
-      item: {
-        backgroundColor: '#63ccff',
-        padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16,
-      },
-      image: {
+    image: {
         flex: 0,
         width:"100%",
         height: 500,
         position: "relative"
     },
-      title: {
+    title: {
         fontSize: 20
-      },
+    },
 });

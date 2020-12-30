@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
-import { ActivityIndicator, StyleSheet, FlatList, Text, View, SafeAreaView, TouchableOpacity } from "react-native";
+import { ActivityIndicator, StyleSheet, FlatList, Text, View, SafeAreaView, TouchableOpacity, StatusBar } from "react-native";
 
 class BookList extends Component {
     constructor(props){
@@ -31,6 +31,7 @@ class BookList extends Component {
 
         if(!isLoaded){
             return <View style={[styles.container, styles.horizontal]}>
+            <StatusBar backgroundColor="#000051" barStyle="light-content" />  
             <ActivityIndicator size="large" />
           </View>
         }else{
@@ -40,13 +41,14 @@ class BookList extends Component {
                   this.props.navigation.navigate("Category", {titleid: item.list_name_encoded, name: item.display_name})
                 }}>
                 <View style={styles.item}>
-                  <Text style={styles.title}>{item.display_name}</Text>
+                  <Text style={[styles.title,styles.titleColor]}>{item.display_name}</Text>
                 </View>
               </TouchableOpacity>
             );
           
             return (
                 <SafeAreaView style={styles.container}>
+                  <StatusBar backgroundColor="#000051" barStyle="light-content" />  
                   <FlatList
                     data={data}
                     renderItem={renderItem}
@@ -69,14 +71,17 @@ const styles = StyleSheet.create({
       padding: 10
     },
       item: {
-        backgroundColor: '#63ccff',
+        backgroundColor: '#534bae',
         padding: 20,
-        marginVertical: 8,
-        marginHorizontal: 16,
+        marginVertical: 5,
+        marginHorizontal: 10,
       },
       title: {
-        fontSize: 20
+        fontSize: 20,
       },
+      titleColor:{
+        color: '#fff'
+      }
 });
  
 export default BookList;

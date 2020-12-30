@@ -41,7 +41,7 @@ export default function App() {
           },
         })}
         tabBarOptions={{
-          activeTintColor: 'tomato',
+          activeTintColor: '#1a237e',
           inactiveTintColor: 'gray',
         }}
       >
@@ -55,9 +55,26 @@ export default function App() {
 function StackScreen() {
   return (
     <Stack.Navigator>
-        <Stack.Screen name="BookList" component={BookList} />
-        <Stack.Screen name="Category" component={Category} options={({ route }) => ({ title: route.params.name })}/>
-        <Stack.Screen name="Book" component={Book} options={({ route }) => ({ title: route.params.name })}/>
+        <Stack.Screen name="BookList" component={BookList} options={() => ({ 
+            headerStyle: {
+              backgroundColor: '#1a237e'
+            },
+            headerTintColor: '#fff',
+          })} />
+        <Stack.Screen name="Category" component={Category} options={({ route }) => ({ 
+            title: route.params.name,
+            headerStyle: {
+              backgroundColor: '#1a237e'
+            },
+            headerTintColor: '#fff',
+          })}/>
+        <Stack.Screen name="Book" component={Book} options={({ route }) => ({ 
+            title: route.params.name,
+            headerStyle: {
+              backgroundColor: '#1a237e'
+            },
+            headerTintColor: '#fff',
+          })}/>
     </Stack.Navigator>
   );
 }
@@ -65,9 +82,19 @@ function StackScreen() {
 function TopStackScreen() {
   return (
     <StackTop.Navigator>
-        <StackTop.Screen name="Top5" component={TopBooks} />
-        <StackTop.Screen name="Category" component={Category} options={({ route }) => ({ title: route.params.name })}/>
-        <StackTop.Screen name="Book" component={Book} options={({ route }) => ({ title: route.params.name })}/>
+        <StackTop.Screen name="Top5" component={TopBooks} options={() => ({ 
+            headerStyle: {
+              backgroundColor: '#1a237e'
+            },
+            headerTintColor: '#fff',
+          })} />
+        <StackTop.Screen name="Book" component={Book} options={({ route }) => ({ 
+            title: route.params.name,
+            headerStyle: {
+              backgroundColor: '#1a237e'
+            },
+            headerTintColor: '#fff',
+          })}/>
     </StackTop.Navigator>
   );
 }
