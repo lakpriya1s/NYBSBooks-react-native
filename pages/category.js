@@ -1,6 +1,6 @@
 import { ActivityIndicator, StyleSheet, FlatList, Text, View, SafeAreaView, Image, TouchableOpacity } from "react-native";
 import React, { Component } from 'react';
-import { Card } from "react-native-elements";
+import { Card, Button, Icon } from "react-native-elements";
 import axios from "axios";
 
 class Category extends Component {
@@ -24,7 +24,7 @@ class Category extends Component {
             list_name: response.data.results.list_name,
             list_code: response.data.results.list_name_encoded
           });
-          console.log(this.state.data);
+          //console.log(this.state.data);
         })
         .catch((err)=> {
             console.log(err);
@@ -40,24 +40,27 @@ class Category extends Component {
           </View>
         }else{
             const renderItem = ({ item }) => (
-                <Card containerStyle={{}} wrapperStyle={{}}>
-                <Card.Title>{item.title}</Card.Title>
-                <Card.Divider />
-                <View
-                    style={{
-                    position: "relative",
-                    alignItems: "center"
-                    }}>
-                    <Image
-                    style={styles.image}
-                    resizeMode="contain"
-                    source={{
-                        uri: item.book_image
-                    }}
-                    />
-                    <Text>Pranshu Chittora</Text>
-                </View>
-                </Card>
+                <TouchableOpacity onPress={() => {
+                    this.props.navigation.navigate("Book", {name: item.title, book: item})
+                  }}>
+                    <Card containerStyle={{}} wrapperStyle={{}}>
+                    <Card.Title>{item.title}</Card.Title>
+                        <View
+                            style={{
+                            position: "relative",
+                            alignItems: "center"
+                            }}>
+                            <Image
+                            style={styles.image}
+                            resizeMode="contain"
+                            source={{
+                                uri: item.book_image
+                            }}
+                            PlaceholderContent={<ActivityIndicator />}>
+                            </Image>              
+                        </View>
+                    </Card>
+                </TouchableOpacity>
             );
           
             return (

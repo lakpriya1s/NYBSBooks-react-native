@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { ActivityIndicator, StyleSheet, FlatList, Text, View, SafeAreaView, TouchableOpacity } from "react-native";
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import Category from './category';
 
 class BookList extends Component {
     constructor(props){
@@ -22,7 +19,7 @@ class BookList extends Component {
             isLoaded: true,
             data: response.data.results
           });
-          console.log(this.state.data);
+          //console.log(this.state.data);
         })
         .catch((err)=> {
             console.log(err);
