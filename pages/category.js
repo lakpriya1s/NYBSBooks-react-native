@@ -56,7 +56,7 @@ class Category extends Component {
                             source={{
                                 uri: item.book_image
                             }}
-                            PlaceholderContent={<ActivityIndicator />}>
+                            PlaceholderContent={<ActivityIndicator size="large" color="#0000ff" />}>
                             </Image>              
                         </View>
                     </Card>
