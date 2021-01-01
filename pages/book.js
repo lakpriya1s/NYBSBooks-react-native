@@ -1,5 +1,5 @@
 import React,{Component} from 'react'
-import { View, Text, StyleSheet, Image, ActivityIndicator } from 'react-native'
+import { View, Text, StyleSheet, Image, ActivityIndicator, Button, Linking } from 'react-native'
 import { Card } from 'react-native-elements';
 import { ScrollView } from 'react-native-gesture-handler';
 
@@ -32,7 +32,14 @@ class Book extends Component {
                                 uri: book.book_image
                             }}
                             PlaceholderContent={<ActivityIndicator />}>
-                            </Image>              
+                            </Image> 
+
+                            <View style={styles.buttonStyle}>
+                                <Button title='Buy on Amazon.com' onPress={ ()=> Linking.openURL(book.amazon_product_url) } />
+                            </View>
+                            <View style={styles.buttonStyle}>
+                                <Button title='Reviews' onPress={ ()=> this.props.navigation.navigate("Review", {name: book.title, isbn: book.primary_isbn10}) } />
+                            </View>
                         </View>
                     </Card>
                     </ScrollView>
@@ -56,9 +63,14 @@ const styles = StyleSheet.create({
         flex: 0,
         width:"100%",
         height: 500,
-        position: "relative"
+        position: "relative",
+        marginBottom: 15
     },
     title: {
         fontSize: 20
     },
+    buttonStyle: {
+        marginVertical: 5,
+        marginHorizontal: 10,
+    }
 });

@@ -2,24 +2,26 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { ActivityIndicator, StyleSheet, FlatList, Text, View, SafeAreaView, TouchableOpacity, StatusBar } from "react-native";
 
-class BookList extends Component {
+class Review extends Component {
     constructor(props){
         super(props);
         this.state = {
             data: [],
             isLoaded: false,
+            revCount: 0
         }
     }
 
     componentDidMount(){
 
-        axios.get('https://api.nytimes.com/svc/books/v3/lists/names.json?api-key=OPZ9CT7rKrV6lGmEJxs9bAymoBiyAIsI')
+        axios.get('https://api.nytimes.com/svc/books/v3/reviews.json?isbn='+this.props.route.params.isbn+'&api-key=OPZ9CT7rKrV6lGmEJxs9bAymoBiyAIsI')
         .then(response => {
             this.setState({ 
             isLoaded: true,
-            data: response.data.results
+            data: response.data.results,
+            revCount: response.data.num_results
           });
-          //console.log(this.state.data);
+          console.log(this.state.data);
         })
         .catch((err)=> {
             console.log(err);
@@ -27,7 +29,7 @@ class BookList extends Component {
     }
 
     render() { 
-        var {isLoaded, data } = this.state;
+        var {isLoaded, revCount, data } = this.state;
 
         if(!isLoaded){
             return <View style={[styles.container, styles.horizontal]}>
@@ -36,15 +38,18 @@ class BookList extends Component {
           </View>
         }else{
             const renderItem = ({ item }) => (
-                <TouchableOpacity
-                onPress={() => {
-                  this.props.navigation.navigate("Category", {titleid: item.list_name_encoded, name: item.display_name})
-                }}>
                 <View style={styles.item}>
-                  <Text style={[styles.title,styles.titleColor]}>{item.display_name}</Text>
+                  <Text style={[styles.title,styles.titleColor]}>{item.summary}</Text>
                 </View>
-              </TouchableOpacity>
             );
+
+            if(revCount===0){
+                return (
+                    <View >
+                        <Text style={{fontSize: 30}}>No Reviews found!</Text>
+                    </View>
+                )
+            }
           
             return (
                 <SafeAreaView style={styles.container}>
@@ -52,7 +57,7 @@ class BookList extends Component {
                   <FlatList
                     data={data}
                     renderItem={renderItem}
-                    keyExtractor={item => item.list_name_encoded.toString()}
+                    keyExtractor={item => item.summary.toString()}
                   />
                 </SafeAreaView>
               );
@@ -84,4 +89,4 @@ const styles = StyleSheet.create({
       }
 });
  
-export default BookList;
+export default Review;

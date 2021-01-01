@@ -32,7 +32,7 @@ class TopBooks extends Component {
 
         if(!isLoaded){
             return <View style={[styles.container, styles.horizontal]}>
-            <ActivityIndicator size="large" />
+            <ActivityIndicator size="large" color="#0000ff" />
           </View>
         }else{
             const renderList = ({ item }) => (
@@ -54,7 +54,7 @@ class TopBooks extends Component {
                   <FlatList
                     data={data}
                     renderItem={renderList}
-                    keyExtractor={item => item.list_id}
+                    keyExtractor={item => item.list_id.toString()}
                   />
                 </SafeAreaView>
               );

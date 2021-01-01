@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Book from './pages/book';
 import TopBooks from './pages/top5';
+import Review from './pages/review';
 
 const Stack = createStackNavigator();
 const StackTop = createStackNavigator();
@@ -75,6 +76,13 @@ function StackScreen() {
             },
             headerTintColor: '#fff',
           })}/>
+          <Stack.Screen name="Review" component={Review} options={({ route }) => ({ 
+            title: route.params.name,
+            headerStyle: {
+              backgroundColor: '#1a237e'
+            },
+            headerTintColor: '#fff',
+          })}/>
     </Stack.Navigator>
   );
 }
@@ -89,6 +97,13 @@ function TopStackScreen() {
             headerTintColor: '#fff',
           })} />
         <StackTop.Screen name="Book" component={Book} options={({ route }) => ({ 
+            title: route.params.name,
+            headerStyle: {
+              backgroundColor: '#1a237e'
+            },
+            headerTintColor: '#fff',
+          })}/>
+        <Stack.Screen name="Review" component={Review} options={({ route }) => ({ 
             title: route.params.name,
             headerStyle: {
               backgroundColor: '#1a237e'

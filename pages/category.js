@@ -36,7 +36,7 @@ class Category extends Component {
 
         if(!isLoaded){
             return <View style={[styles.container, styles.horizontal]}>
-            <ActivityIndicator size="large" />
+            <ActivityIndicator size="large" color="#0000ff" />
           </View>
         }else{
             const renderItem = ({ item }) => (
@@ -68,7 +68,7 @@ class Category extends Component {
                   <FlatList
                     data={data}
                     renderItem={renderItem}
-                    keyExtractor={item => item.primary_isbn10}
+                    keyExtractor={item => item.primary_isbn10.toString()}
                   />
                 </SafeAreaView>
               );
