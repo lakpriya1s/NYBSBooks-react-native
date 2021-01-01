@@ -37,6 +37,9 @@ class Book extends Component {
                             <View style={styles.buttonStyle}>
                                 <Button title='Buy on Amazon.com' onPress={ ()=> Linking.openURL(book.amazon_product_url) } />
                             </View>
+                            <View style={styles.buttonStyle}>
+                                <Button title='Reviews' onPress={ ()=> this.props.navigation.navigate("Review", {name: book.title, isbn: book.primary_isbn10}) } />
+                            </View>
                         </View>
                     </Card>
                     </ScrollView>
@@ -60,12 +63,14 @@ const styles = StyleSheet.create({
         flex: 0,
         width:"100%",
         height: 500,
-        position: "relative"
+        position: "relative",
+        marginBottom: 15
     },
     title: {
         fontSize: 20
     },
     buttonStyle: {
-        padding: 20,
+        marginVertical: 5,
+        marginHorizontal: 10,
     }
 });
